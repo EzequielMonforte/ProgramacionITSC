@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    .containerVertical{
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%
+    }
+    .containerHorizontal{
+        max-width: 500px;
+        display: flex;
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+        justify-items: center
+    }
+    .button{
+        margin: 5px
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="containerVertical">
+        <input id="entry" type="text">
+        <i id="logs" style="visibility:hidden; margin: 5px; color: red"></i>
+        <p id="show">Lista numeros</p>
+        <div class="containerHorizontal">
+            <button class="button" id="BT_sum">Sumar</button>
+            <button class="button" id="BT_order">Ordenar +-</button>
+        </div>    
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
