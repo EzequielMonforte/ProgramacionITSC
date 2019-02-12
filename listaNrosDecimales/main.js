@@ -1,27 +1,34 @@
-const EL_entry= document.getElementById('entry');
-const EL_logs= document.getElementById('logs')
-const EL_show= document.getElementById('show');
+const $EL_entry= document.getElementById('entry');
+const $EL_logs= document.getElementById('logs');
+const $EL_show= document.getElementById('show');
+const $EL_numsEntered= document.getElementById('numbersEntered');
 const BT_sum= document.getElementById('BT_sum');
-const BT_order= document.getElementById('BT_order')
+const BT_order= document.getElementById('BT_order');
 
 var numEntered= [];
 
 BT_order.setAttribute('direction', 'desc')
 
-EL_entry.addEventListener('keypress', (event)=> {
+$EL_entry.addEventListener('keypress', (event)=> {
     if(event.key === 'Enter'){
         
-        if(!isNaN(EL_entry.value)){
+        if(!isNaN($EL_entry.value) && $EL_entry.value != ''){
             
-        EL_logs.style.visibility= 'hidden'
-        numEntered.push(EL_entry.value)
-        EL_entry.value= null
-        EL_show.innerHTML= numEntered
+        $EL_logs.style.visibility= 'hidden'
+        numEntered.push($EL_entry.value)
         
+        //todo: creates DOM element with the number entered and buttons to change it or delete
+        
+        const $numberItem= document.createElement('div')
+        $numberItem.classList.add('numbersEntered')
+        $numberItem.innerHTML= $EL_entry.value
+        $EL_numsEntered.appendChild($numberItem)
+
+        $EL_entry.value= null
         }else{
        
-            EL_logs.innerHTML= 'debe ingresar un valor numerico'
-            EL_logs.style.visibility= 'visible'
+            $EL_logs.innerHTML= 'debe ingresar un valor numerico'
+            $EL_logs.style.visibility= 'visible'
 
         }
 }
@@ -33,7 +40,7 @@ BT_sum.addEventListener('click', ()=>{
     numEntered.forEach(num => {
         resultado+=parseInt(num)
     });
-    EL_show.innerHTML= `Se sumaron: ${numEntered.length} numeros y el resultado es: <strong>${resultado}</stong>`
+    $EL_show.innerHTML= `Se sumaron: ${numEntered.length} numeros y el resultado es: <strong>${resultado}</stong>`
 })
 
 BT_order.addEventListener('click', ()=>{
@@ -50,7 +57,7 @@ BT_order.addEventListener('click', ()=>{
         BT_order.setAttribute('direction', 'desc')   
         BT_order.innerHTML= orderDesc
     }
-    EL_show.innerHTML= aux.slice(0,4)+ '<br/>'+ aux
+    $EL_show.innerHTML= aux.slice(0,4)+ '<br/>'+ aux
 })
 
 
