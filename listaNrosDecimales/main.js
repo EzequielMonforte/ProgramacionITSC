@@ -6,6 +6,7 @@ const BT_sum= document.getElementById('BT_sum');
 const BT_order= document.getElementById('BT_order');
 
 var numEntered= [];
+let indexNumsEnteredId= 0;
 
 BT_order.setAttribute('direction', 'desc')
 
@@ -16,14 +17,19 @@ $EL_entry.addEventListener('keypress', (event)=> {
             
         $EL_logs.style.visibility= 'hidden'
         numEntered.push($EL_entry.value)
-        
+        //todo: make elements generated foreach in numEntered to change ids when one num is deleted
         //todo: creates DOM element with the number entered and buttons to change it or delete
         
         const $numberItem= document.createElement('div')
         $numberItem.classList.add('numbersEntered')
-        $numberItem.innerHTML= $EL_entry.value
+        
+        $numberItem.setAttribute('data-id', (numEntered.length-1).toString())
+        $numberItem.innerHTML= `<h2>${$EL_entry.value}</h2> <button class="buttonMod">Mod</button> <button class="buttonDel">Elim</button> `
         $EL_numsEntered.appendChild($numberItem)
-
+        const item =getItemsSameID($numberItem)
+        deleteEvent(item[0], item[1], $numberItem.getAttribute('data-id'), $numberItem)
+        //todo: modEvent(item[0], item[1])
+        indexNumsEnteredId+= 1;
         $EL_entry.value= null
         }else{
        
@@ -59,6 +65,29 @@ BT_order.addEventListener('click', ()=>{
     }
     $EL_show.innerHTML= aux.slice(0,4)+ '<br/>'+ aux
 })
+
+function getItemsSameID(element){
+    
+    const elements=$EL_numsEntered.querySelector(`div[data-id='${element.dataset.id}']`)
+    
+    return item=[ number= elements.querySelector('h2'),
+     buttondelete= elements.querySelector('button.buttonDel'),
+     buttonmod= elements.querySelector('button.buttonMod')]
+ 
+
+}
+
+function deleteEvent(h2,button, id, item){
+    button.addEventListener('click', ()=>{
+        console.log(numEntered.splice(id,1))
+        item.style='visibility: hidden'
+        console.log(id)
+        
+       
+    })
+}
+
+
 
 
 
