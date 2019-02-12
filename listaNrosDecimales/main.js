@@ -20,14 +20,8 @@ $EL_entry.addEventListener('keypress', (event)=> {
         //todo: make elements generated foreach in numEntered to change ids when one num is deleted
         //todo: creates DOM element with the number entered and buttons to change it or delete
         
-        const $numberItem= document.createElement('div')
-        $numberItem.classList.add('numbersEntered')
-        
-        $numberItem.setAttribute('data-id', (numEntered.length-1).toString())
-        $numberItem.innerHTML= `<h2>${$EL_entry.value}</h2> <button class="buttonMod">Mod</button> <button class="buttonDel">Elim</button> `
-        $EL_numsEntered.appendChild($numberItem)
-        const item =getItemsSameID($numberItem)
-        deleteEvent(item[0], item[1], $numberItem.getAttribute('data-id'), $numberItem)
+        generateNumberList(numEntered)
+
         //todo: modEvent(item[0], item[1])
         indexNumsEnteredId+= 1;
         $EL_entry.value= null
@@ -39,6 +33,19 @@ $EL_entry.addEventListener('keypress', (event)=> {
         }
 }
 })
+function generateNumberList(){
+    
+        
+    const $numberItem= document.createElement('div')
+    $numberItem.classList.add('numbersEntered')
+        
+    $numberItem.setAttribute('data-id', (numEntered.length-1).toString())
+    $numberItem.innerHTML= `<h2>${$EL_entry.value}</h2> <button class="buttonMod">Mod</button> <button class="buttonDel">Elim</button> `
+    $EL_numsEntered.firstElementChild.appendChild($numberItem)
+    const item =getItemsSameID($numberItem)
+    deleteEvent(item[0], item[1], $numberItem.getAttribute('data-id'), $numberItem)
+
+}
 
 BT_sum.addEventListener('click', ()=>{
     let resultado=0;
@@ -79,9 +86,25 @@ function getItemsSameID(element){
 
 function deleteEvent(h2,button, id, item){
     button.addEventListener('click', ()=>{
+
         console.log(numEntered.splice(id,1))
-        item.style='visibility: hidden'
-        console.log(id)
+        $EL_numsEntered.remove($EL_numsEntered.childNodes[1])
+        
+        const $container= document.createElement('div')
+        $EL_numsEntered.appendChild($container)
+        let index=0;
+        numEntered.forEach(element => {
+            const $numberItem= document.createElement('div')
+            $numberItem.classList.add('numbersEntered')
+                
+            $numberItem.setAttribute('data-id', (index).toString())
+            $numberItem.innerHTML= `<h2>${element}</h2> <button class="buttonMod">Mod</button> <button class="buttonDel">Elim</button> `
+            $EL_numsEntered.firstElementChild.appendChild($numberItem)
+            const item =getItemsSameID($numberItem)
+            deleteEvent(item[0], item[1], $numberItem.getAttribute('data-id'), $numberItem)
+            index++
+        });
+
         
        
     })
