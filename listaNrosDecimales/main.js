@@ -17,8 +17,6 @@ $EL_entry.addEventListener('keypress', (event)=> {
             
         $EL_logs.style.visibility= 'hidden'
         numEntered.push($EL_entry.value)
-        //todo: make elements generated foreach in numEntered to change ids when one num is deleted
-        //todo: creates DOM element with the number entered and buttons to change it or delete
         
         generateNumberList(numEntered)
 
@@ -88,9 +86,11 @@ function deleteEvent(h2,button, id, item){
     button.addEventListener('click', ()=>{
 
         console.log(numEntered.splice(id,1))
-        $EL_numsEntered.remove($EL_numsEntered.childNodes[1])
-        
+        const child=$EL_numsEntered.childElementCount
+        $EL_numsEntered.removeChild(document.getElementById('contenedor'))
+
         const $container= document.createElement('div')
+        $container.id= 'contenedor'
         $EL_numsEntered.appendChild($container)
         let index=0;
         numEntered.forEach(element => {
