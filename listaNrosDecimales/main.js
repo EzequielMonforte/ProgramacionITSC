@@ -67,7 +67,7 @@ function deleteEvent(h2,button, id, item){
             modEvent(item[0], item[2], $numberItem.getAttribute('data-id'), $numberItem)
             index++ 
         });
-
+        $EL_show.innerHTML= numEntered
         
        
     })
@@ -90,7 +90,7 @@ function modEvent(h2, button, id, item){
             h2.innerHTML= valor
 
             numEntered[id]= valor
-            console.log(numEntered)
+            $EL_show.innerHTML= numEntered
         }else{
             $EL_logs.innerHTML= 'debe ingresar un valor numerico'
             $EL_logs.style.visibility= 'visible'
