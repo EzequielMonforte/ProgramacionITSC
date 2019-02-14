@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Listas;
 
-namespace testing
+namespace Listas
 {
     class Program
     {
@@ -15,7 +15,7 @@ namespace testing
             hola.addNumber(1);
             hola.addNumber(2);
             hola.addNumber(1);
-            var lista= hola.ShowOrderList();
+            var lista= hola.ShowOrderList(false);
             foreach (var item in lista)
             {
                 Console.WriteLine(item);
