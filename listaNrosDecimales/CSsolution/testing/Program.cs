@@ -10,7 +10,7 @@ namespace Listas
         
         static void Main(string[] args)
         {
-            List hola= new List();
+            Listas.List hola= new Listas.List();
             Console.WriteLine("Hello World!");
             hola.addNumber(1);
             hola.addNumber(2);
