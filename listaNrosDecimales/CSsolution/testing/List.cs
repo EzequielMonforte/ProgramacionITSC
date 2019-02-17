@@ -15,12 +15,13 @@ public class List{
     /// <summary>
     /// Sum all values in the list
     /// </summary>
-    /// <returns></returns>
-    public int SumValues(){
-        int result=0;
+    /// <returns>returns an array , index 0: sum value.true index 1: count of items sum <returns>
+    public int[] SumValues(){
+        int[] result=new int[2];
+        result[1]= listShow.Count;
         foreach (var value in listShow)
         {
-            result += value;
+            result[0] += value;
         }
         return result;
     }
