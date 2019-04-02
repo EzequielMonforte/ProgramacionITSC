@@ -21,6 +21,7 @@
 		</Grid.RowDefinitions>
 
 		<Image x:Name="MImagen" Source="Assets\sintitulo.jpg" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="30"></Image>
+		<TextBlock x:Name="MImgDate" Text="" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"></TextBlock>
 		<Button x:Name="MButton" Grid.Row="1" Grid.Column="2" Width="300" Height="100" Content="Imagen" FontSize="32" Click="MButton_Click"></Button>	
 		
 	</Grid>
