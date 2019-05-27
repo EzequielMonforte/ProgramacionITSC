@@ -15,31 +15,56 @@ namespace EjDataGridView
 		public Form1()
 		{
 			InitializeComponent();
-			SetColName("");
-			SetColName("Lunes");
-			SetColName("Martes");
-			SetColName("Miercoles");
-			SetColName("Jueves");
-			SetColName("Viernes");
-			SetColName("Sabado");
-			SetColName("Domingo");
-
-			for (int i = 8; i < 15; i++)
-			{
-				SetRowName(i);
-			}
+			DgvHorario.MultiSelect = false;
 			
 		}
 
-		private void SetRowName(int i)
+		private void SetRowName(int i, int rownum)
 		{
-			
-			DgvHorario.Rows.Add(i+":00");
+			DgvHorario.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+			DgvHorario.Rows.Add();
+			DgvHorario.Rows[rownum].HeaderCell.Value = i+":00";
+
 		}
 
 		private void SetColName(string day)
 		{
 			DgvHorario.Columns.Add(day, day);
+		}
+
+
+		private void BtChargeDgv_Click(object sender, EventArgs e)
+		{
+			if (DgvHorario.Rows.Count == 0)
+			{
+				SetColName("Lunes");
+				SetColName("Martes");
+				SetColName("Miercoles");
+				SetColName("Jueves");
+				SetColName("Viernes");
+				SetColName("Sabado");
+				SetColName("Domingo");
+				int j = 0;
+				for (int i = 8; i < 15; i++)
+				{
+					SetRowName(i, j);
+					j++;
+				}
+			}
+		}
+
+		private void BtInsertarMateria_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				DgvHorario.SelectedCells[0].Value = TxBMateria.Text;
+			}
+			catch (System.ArgumentOutOfRangeException) {
+				MessageBox.Show("la tabla no fue cargada");
+			}
+
+
+
 		}
 	}
 }
